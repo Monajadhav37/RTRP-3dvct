@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" x-data="{ tab: 'classroom' }">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D Tours - Virtual Campus</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md px-6 py-4 flex justify-between items-center">
+    <div class="text-2xl font-bold text-blue-600">Virtual Campus</div>
+    <ul class="flex space-x-6 text-gray-700 font-medium">
+      <li><a href="index.html" class="hover:text-blue-500">Home</a></li>
+      <li><a href="about.html" class="hover:text-blue-500">About Us</a></li>
+      <li><a href="tour.html" class="hover:text-blue-500">3D Tour</a></li>
+      <li><a href="feedback.html" class="hover:text-blue-500">Feedback</a></li>
+    </ul>
+  </nav>
+
+  <!-- Tabs -->
+  <section class="py-10 px-6 max-w-7xl mx-auto">
+    <div class="flex justify-center space-x-4 mb-6">
+      <button 
+        @click="tab = 'classroom'" 
+        :class="tab === 'classroom' ? 'bg-blue-600 text-white' : 'bg-white text-blue-600 border'"
+        class="px-6 py-2 rounded-lg font-semibold shadow-md border border-blue-600 transition">
+        Classroom 1
+      </button>
+      <button 
+        @click="tab = 'canteen'" 
+        :class="tab === 'canteen' ? 'bg-blue-600 text-white' : 'bg-white text-blue-600 border'"
+        class="px-6 py-2 rounded-lg font-semibold shadow-md border border-blue-600 transition">
+        Canteen
+      </button>
+    </div>
+
+    <!-- Classroom 1 Tour -->
+    <div x-show="tab === 'classroom'" class="text-center space-y-6">
+      <h1 class="text-4xl font-bold text-blue-800">Classroom 1 - 3D Tour</h1>
+      <p class="text-gray-700 text-lg">Explore Classroom 1 in our virtual campus.</p>
+      <div class="w-full h-[calc(100vh-240px)] bg-gray-200 rounded-lg shadow-inner">
+        <iframe 
+          src="https://poly.cam/capture/F5963A62-642E-4309-8710-41405F697219/embed" 
+          class="w-full h-full rounded-lg" 
+          frameborder="0" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Canteen Tour -->
+    <div x-show="tab === 'canteen'" class="text-center space-y-6" id="canteen-section">
+      <h1 id="canteen-title" class="text-4xl font-bold text-blue-800">Loading...</h1>
+      <p id="canteen-desc" class="text-gray-700 text-lg"></p>
+      <div class="w-full h-[calc(100vh-240px)] bg-gray-200 rounded-lg shadow-inner">
+        <iframe 
+          id="canteen-iframe"
+          src="" 
+          class="w-full h-full rounded-lg" 
+          frameborder="0" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Load JSON -->
+  <script>
+    fetch('canteen.json')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('canteen-title').textContent = `${data.title} - 3D Tour`;
+        document.getElementById('canteen-desc').textContent = data.description;
+        document.getElementById('canteen-iframe').src = data.embed;
+      })
+      .catch(err => console.error('Error loading canteen.json:', err));
+  </script>
+
+</body>
+</html>
+

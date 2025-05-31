@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lab 1 - 3D Tour</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md px-6 py-4 flex justify-between items-center">
+    <div class="text-2xl font-bold text-blue-600">Virtual Campus</div>
+    <ul class="flex space-x-6 text-gray-700 font-medium">
+      <li><a href="index.html" class="hover:text-blue-500">Home</a></li>
+      <li><a href="about.html" class="hover:text-blue-500">About Us</a></li>
+      <li><a href="tour.html" class="hover:text-blue-500">3D Tour</a></li>
+      <li><a href="feedback.html" class="hover:text-blue-500">Feedback</a></li>
+    </ul>
+  </nav>
+
+  <!-- 3D Tour Section for Lab 1 -->
+  <section class="py-16 px-6 max-w-5xl mx-auto text-center">
+    <h1 class="text-4xl font-bold text-blue-800 mb-6">Lab 1 - 3D Tour</h1>
+    <p class="text-gray-700 text-lg mb-8">
+      Explore Lab 1 in our virtual campus.
+    </p>
+
+    <!-- Polycam Embed -->
+    <div class="aspect-w-16 aspect-h-9 w-full bg-gray-200 rounded-lg shadow-inner">
+      <iframe src="https://poly.cam/capture/YOUR_LAB_URL" class="w-full h-full rounded-lg" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </section>
+
+</body>
+</html>
